@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2000"
     zoomAndPan="magnify" viewBox="0 0 1500 1499.999933" height="2000"
     preserveAspectRatio="xMidYMid meet" version="1.0">
-    <rect x="-150" width="1800" fill="#ffffff" y="-149.999993" height="1799.99992" fill-opacity="1" />
-    <rect x="-150" width="1800" fill="#ffffff" y="-149.999993" height="1799.99992" fill-opacity="1" />
+
     <path fill="#000000"
         d="M 400.003906 699.988281 L 1099.996094 699.988281 L 1099.996094 799.996094 L 400.003906 799.996094 Z M 400.003906 699.988281 "
         fill-opacity="1" fill-rule="nonzero" />

@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import { AppConfig, showConnect, UserSession } from '@stacks/connect'
+import { Button } from './ui/button'
+import { Link } from 'lucide-react'
 
 const appConfig = new AppConfig(['store_write', 'publish_data'])
 
@@ -42,9 +44,10 @@ const ConnectWallet = () => {
   }
 
   return (
-    <button className="Connect" onClick={authenticate}>
+    <Button className="Connect mt-4 flex gap-2" onClick={authenticate}>
       Connect your Wallet
-    </button>
+      <Link className="flex gap-2"></Link>
+    </Button>
   )
 }
 
