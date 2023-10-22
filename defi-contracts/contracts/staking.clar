@@ -20,6 +20,10 @@
 (define-private (get-contract-stx-balance) 
     (stx-get-balance (as-contract tx-sender)))
 
+(define-read-only (get-STX-balance (who principal))
+    (ok (stx-get-balance who))
+)
+
 (define-public (stake-stx (stx-amount uint))
     (let (
       (current-amount (default-to u0 (map-get? stSTX-balances tx-sender)))
