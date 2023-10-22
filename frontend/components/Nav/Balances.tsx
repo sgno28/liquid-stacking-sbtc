@@ -39,7 +39,7 @@ export function Balances() {
 
     getSTXBalance({ address })
       .then((res) => {
-        setStx(BigInt(res.value.value) / 1000000n)
+        setStx(res.value.value)
       })
       .catch((error) => {
         setError(error)

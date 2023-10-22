@@ -7,7 +7,7 @@ import {
   standardPrincipalCV,
   standardPrincipalCVFromAddress,
 } from '@stacks/transactions'
-
+import { StackForm } from './forms'
 import {
   Card,
   CardContent,
@@ -19,17 +19,8 @@ import {
 
 import { routeFetch } from '@/lib/fetch'
 import { useEffect, useState } from 'react'
-import { userSession } from './ConnectWallet'
-import { useApiData } from './hooks/useApiData'
-import {
-  ContractCallRegularOptions,
-  makeContractCallToken,
-  openContractCall,
-} from '@stacks/connect-react'
-import { Address } from 'cluster'
-import { Label } from './forms/label'
 
-const network = new StacksMocknet()
+export const network = new StacksMocknet()
 
 const route = async (address) => {
   try {
@@ -47,60 +38,29 @@ const route = async (address) => {
 }
 
 export const StakeCard = () => {
+  const [stake, setStake] = useState('')
+  const [unStake, set] = useState('')
+
+  const handleSubmit = (event: Event) => {
+    event.preventDefault()
+    alert(`The name you entered was: ${name}`)
+  }
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Your Wallet</CardTitle>
-        <CardDescription>Check out balances for Stacks, BTC </CardDescription>
-      </CardHeader>
+    <div className="flex">
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle>Your Wallet</CardTitle>
+          <CardDescription>Check out balances for Stacks, BTC </CardDescription>
+        </CardHeader>
 
-      <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Stake</Label>
-              <Input id="name" placeholder="Stake" />
-            </div>
-            <button></button>
-          </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button>Stake</Button>
+        <CardContent>
+          <StackForm />
+        </CardContent>
+        <CardFooter className="flex justify-between"></CardFooter>
+      </Card>
 
-        {userSession.isUserSignedIn() ? (
-          <>
-            {console.log(userSession.loadUserData().profile.stxAddress.testnet)}
-            {/* <Button
-              onClick={() =>
-                readOnlyRequest({
-                  address:
-                    userSession.loadUserData().profile.stxAddress.testnet,
-                }).then((res) => console.log(res))
-              }
-            >
-              Contract test
-            </Button> */}
-            <Button
-              onClick={() =>
-                getBalance({
-                  address: 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG',
-                }).then((res) => console.log(res))
-              }
-            >
-              get balance
-            </Button>
-            <Button
-              onClick={() =>
-                route(userSession.loadUserData().profile.stxAddress.testnet)
-              }
-            >
-              Route test
-            </Button>
-          </>
-        ) : null}
-      </CardFooter>
-    </Card>
+      <CardFooter className="flex justify-between"></CardFooter>
+    </div>
   )
 }
 
@@ -160,14 +120,3 @@ function standardPrincipalCVfromAddress(
 ): import('@stacks/transactions').ClarityValue {
   throw new Error('Function not implemented.')
 }
-// const options: ContractCallRegularOptions = {
-//   contractAddress: 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM',
-//   contractName: 'stacking',
-//   functionName: '',
-//   functionArgs: [],
-//   network,
-//   appDetails,
-//   onFinish: ({ txId }) => console.log(txId),
-// }
-
-// await openContractCall(options)

@@ -41,12 +41,12 @@ export default function NavBar({
   return (
     <nav
       className={cn(
-        'flex w-full justify-between gap-4 space-x-4 px-4 pb-20 pt-4 font-sans md:px-20',
+        'flex w-full items-center justify-between gap-4 space-x-4 px-4 pb-20 pt-4 font-sans md:px-20',
         className
       )}
       {...props}
     >
-      <PageHeading>HayStack</PageHeading>
+      <PageHeading>#HayStack</PageHeading>
       <Balances />
       <WalletLinkDialog />
       <UserNav />

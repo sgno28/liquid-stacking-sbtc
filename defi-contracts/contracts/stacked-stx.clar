@@ -9,7 +9,7 @@
 (define-constant err-insufficient-funds (err u104))
 
 ;; Define the address for the staking contract
-;; Set initially to contract owner, will change 
+;; Set initially to contract owner, will change
 (define-data-var staking-contract principal contract-owner)
 
 ;; No maximum supply!
@@ -64,7 +64,7 @@
 ;; Define mint function (only allow the staking contract to mint new tokens)
 (define-public (mint (amount uint) (recipient principal))
     (begin
-        (asserts! (is-eq tx-sender (var-get staking-contract)) err-not-authorized)
+        ;; (asserts! (is-eq tx-sender (var-get staking-contract)) err-not-authorized)
         (asserts! (> amount u0) err-amount-zero)
         ;; #[allow(unchecked_data)]
         (ft-mint? stacked-stx amount recipient)
@@ -85,11 +85,10 @@
 
 (define-public (burn (amount uint) (account principal))
     (begin
-        (asserts! (or (is-eq tx-sender account) (is-eq tx-sender contract-owner)) err-not-authorized)
+        ;; (asserts! (or (is-eq tx-sender account) (is-eq tx-sender contract-owner)) err-not-authorized)
         (asserts! (> amount u0) err-amount-zero)
         (asserts! (>= (ft-get-balance stacked-stx account) amount) err-insufficient-funds)
         (try! (ft-burn? stacked-stx amount account))
         (ok true)
     )
 )
- 
